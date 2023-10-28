@@ -10,6 +10,7 @@ setup(name='funniest',
       packages=['gamelogic', "graphics"],
       install_requires=[
           "blessed",
-          "numpy"
+          "numpy",
+          "pytest"
       ],
       zip_safe=False)

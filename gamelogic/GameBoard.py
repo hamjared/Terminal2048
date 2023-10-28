@@ -3,7 +3,8 @@ import numpy as np
 
 class GameBoard:
     """
-    Encapsulates the beahvior of a game board. The game board is expected to look like this for a 4x4 board
+    Encapsulates the beahvior of a game board. The game board is expected
+    to look like this for a 4x4 board
     -------------------------------
              Col 0  Col 1   Col 2   Col 3
     row 0: |      |       |       |       |
@@ -26,7 +27,7 @@ class GameBoard:
         self.width = width
         self.height = height
 
-        self._gameBoard = None
+        self._game_board = None
         self._initialize_new_game_board()
 
         pass
@@ -36,7 +37,7 @@ class GameBoard:
         Initialize an empty game board
         :return: void
         """
-        self._gameBoard = np.zeros(shape=(self.height, self.width), dtype=int)
+        self._game_board = np.zeros(shape=(self.height, self.width), dtype=int)
 
     def get_value(self, row: int, column: int) -> int:
         """
@@ -46,9 +47,9 @@ class GameBoard:
         :param column: The colum index to get
         :return: The value at the specified position
         """
-        return self._gameBoard[row][column]
+        return self._game_board[row][column]
 
-    def set_value(self, value: int,  row: int, column: int):
+    def set_value(self, value: int, row: int, column: int):
         """
         Set the value at the specified position in the game board. The row and column indexes are 0 based with 0,0
         being the top left
@@ -57,14 +58,14 @@ class GameBoard:
         :param column: The colum index to get
 
         """
-        self._gameBoard[row][column] = value
+        self._game_board[row][column] = value
 
     def reset_game_board(self):
         """
         Reset the game board to its empty state.
         :return: void
         """
-        pass
+        self._initialize_new_game_board()
 
     def slide_left(self):
         """

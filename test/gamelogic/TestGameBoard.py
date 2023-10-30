@@ -1,4 +1,3 @@
-import pytest
 import unittest
 from gamelogic.GameBoard import GameBoard, BLANK_SPACE
 from gamelogic.GameBoard import slide_array_right_to_left
@@ -81,17 +80,17 @@ class TestGameBoard(unittest.TestCase):
     def test_initializeGameBoard(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
-        self.assertEqual(0, gameBoard.get_score())
+        self.assertEqual(0, game_board.get_score())
         for r in range(0, height):
             for c in range(0, width):
-                self.assertEqual(0, gameBoard.get_value(row=r, column=c), "Row {} Column {} is not 0".format(r, c))
+                self.assertEqual(0, game_board.get_value(row=r, column=c), "Row {} Column {} is not 0".format(r, c))
 
     def test_slide_left_with_combining(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
         begin_state = [
             [2, 2, 2, 2],
@@ -102,9 +101,9 @@ class TestGameBoard(unittest.TestCase):
 
         for r in range(0, height):
             for c in range(0, width):
-                gameBoard.set_value(begin_state[r][c], row=r, column=c)
+                game_board.set_value(begin_state[r][c], row=r, column=c)
 
-        gameBoard.slide_left()
+        game_board.slide_left()
         expected_after_state = [
             [4, 4, 0, 0],
             [4, 4, 0, 0],
@@ -117,15 +116,15 @@ class TestGameBoard(unittest.TestCase):
             for c in range(0, width):
                 self.assertEqual(
                     expected_after_state[r][c],
-                    gameBoard.get_value(row=r, column=c),
+                    game_board.get_value(row=r, column=c),
                     "Row {} Column {} is not expected".format(r, c))
 
-        self.assertEqual(expected_score, gameBoard.get_score())
+        self.assertEqual(expected_score, game_board.get_score())
 
     def test_slide_right_with_combining(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
         begin_state = [
             [2, 2, 2, 2],
@@ -136,9 +135,9 @@ class TestGameBoard(unittest.TestCase):
 
         for r in range(0, height):
             for c in range(0, width):
-                gameBoard.set_value(begin_state[r][c], row=r, column=c)
+                game_board.set_value(begin_state[r][c], row=r, column=c)
 
-        gameBoard.slide_right()
+        game_board.slide_right()
         expected_after_state = [
             [0, 0, 4, 4],
             [0, 0, 4, 4],
@@ -152,15 +151,15 @@ class TestGameBoard(unittest.TestCase):
             for c in range(0, width):
                 self.assertEqual(
                     expected_after_state[r][c],
-                    gameBoard.get_value(row=r, column=c),
+                    game_board.get_value(row=r, column=c),
                     "Row {} Column {} is not expected".format(r, c))
 
-        self.assertEqual(expected_score, gameBoard.get_score())
+        self.assertEqual(expected_score, game_board.get_score())
 
     def test_slide_up_with_combining(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
         begin_state = [
             [2, 2, 2, 2],
@@ -171,9 +170,9 @@ class TestGameBoard(unittest.TestCase):
 
         for r in range(0, height):
             for c in range(0, width):
-                gameBoard.set_value(begin_state[r][c], row=r, column=c)
+                game_board.set_value(begin_state[r][c], row=r, column=c)
 
-        gameBoard.slide_up()
+        game_board.slide_up()
         expected_after_state = [
             [4, 4, 4, 4],
             [4, 2, 8, 16],
@@ -187,15 +186,15 @@ class TestGameBoard(unittest.TestCase):
             for c in range(0, width):
                 self.assertEqual(
                     expected_after_state[r][c],
-                    gameBoard.get_value(row=r, column=c),
+                    game_board.get_value(row=r, column=c),
                     "Row {} Column {} is not expected".format(r, c))
 
-        self.assertEqual(expected_score, gameBoard.get_score())
+        self.assertEqual(expected_score, game_board.get_score())
 
     def test_slide_down_with_combining(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
         begin_state = [
             [2, 2, 2, 2],
@@ -206,9 +205,9 @@ class TestGameBoard(unittest.TestCase):
 
         for r in range(0, height):
             for c in range(0, width):
-                gameBoard.set_value(begin_state[r][c], row=r, column=c)
+                game_board.set_value(begin_state[r][c], row=r, column=c)
 
-        gameBoard.slide_down()
+        game_board.slide_down()
         expected_after_state = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
@@ -222,15 +221,15 @@ class TestGameBoard(unittest.TestCase):
             for c in range(0, width):
                 self.assertEqual(
                     expected_after_state[r][c],
-                    gameBoard.get_value(row=r, column=c),
+                    game_board.get_value(row=r, column=c),
                     "Row {} Column {} is not expected".format(r, c))
 
-        self.assertEqual(expected_score, gameBoard.get_score())
+        self.assertEqual(expected_score, game_board.get_score())
 
     def test_generate_new_tile(self):
         width = 4
         height = 4
-        gameBoard = GameBoard(width=width, height=height)
+        game_board = GameBoard(width=width, height=height)
 
         begin_state = [
             [2, 2, 2, 2],
@@ -241,16 +240,14 @@ class TestGameBoard(unittest.TestCase):
 
         for r in range(0, height):
             for c in range(0, width):
-                gameBoard.set_value(begin_state[r][c], row=r, column=c)
+                game_board.set_value(begin_state[r][c], row=r, column=c)
 
-        original_blank_spaces = _count_blank_spaces(gameBoard)
+        original_blank_spaces = _count_blank_spaces(game_board)
         expected_blank_spaces = original_blank_spaces - 1
 
+        game_board._generate_new_tile()
 
-
-        gameBoard._generate_new_tile()
-
-        self.assertEqual(expected_blank_spaces, _count_blank_spaces(gameBoard))
+        self.assertEqual(expected_blank_spaces, _count_blank_spaces(game_board))
 
 
 if __name__ == '__main__':
